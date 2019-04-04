@@ -1,0 +1,6 @@
+{
+  "name": "Hacker News New Comments Highlighter",
+  "version": "0.1",
+  "description": "Track and highlight new comments at Hacker News",
+  "manifest_version": 2
+}
