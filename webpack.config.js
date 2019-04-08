@@ -15,10 +15,11 @@ const config = (env, argv) => {
   const plugins = isProduction ? [] : [new webpack.HotModuleReplacementPlugin()];
 
   return {
-    devtool: isProduction ? 'hidden-source-map' : 'cheap-module-eval-source-map',
+    devtool: isProduction ? 'hidden-source-map' : 'cheap-module-source-map',
     context: resolvePath('src'),
     entry: {
       content: path.join(__dirname, 'src', 'content', 'content.js'),
+      background: path.join(__dirname, 'src', 'background', 'background.js'),
     },
     module: {
       rules: [
