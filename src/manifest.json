@@ -17,10 +17,10 @@
         "https://news.ycombinator.com/item?*"
       ],
       "css": [
-        "style.css"
+        "content.css"
       ],
       "js": [
-        "contentScript.js"
+        "content.js"
       ]
     }
   ]

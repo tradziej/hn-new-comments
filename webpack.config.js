@@ -18,7 +18,7 @@ const config = (env, argv) => {
     devtool: isProduction ? 'hidden-source-map' : 'cheap-module-eval-source-map',
     context: resolvePath('src'),
     entry: {
-      contentScript: path.join(__dirname, 'src', 'js', 'injected.js'),
+      content: path.join(__dirname, 'src', 'content', 'content.js'),
     },
     module: {
       rules: [
@@ -64,7 +64,7 @@ const config = (env, argv) => {
         { from: 'img/icon128.png', to: 'img/icon128.png' },
       ]),
       new MiniCssExtractPlugin({
-        filename: 'style.css',
+        filename: 'content.css',
       }),
     ],
     devServer: {
