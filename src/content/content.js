@@ -13,12 +13,15 @@ const highlight = () => {
     const comments = page.getComments();
 
     if (oldComments && oldComments.length > 0) {
-      comments.forEach(comment => {
-        if (!oldComments.includes(comment)) {
-          const el = document.getElementById(comment);
-          el.querySelector('td.default').className += ' hn-new-comment';
-        }
+      const unread = comments.filter(c => !oldComments.includes(c));
+      unread.forEach(comment => {
+        const el = document.getElementById(comment);
+        el.querySelector('td.default').className += ' hn-new-comment';
       });
+      if (unread.length > 0) {
+        const { title } = document;
+        document.title = `(${unread.length}) ${title}`;
+      }
     }
 
     const data = {
