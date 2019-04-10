@@ -11,6 +11,10 @@
   "permissions": [
     "storage"
   ],
+  "browser_action": {
+    "default_title": "HN Highlighter",
+    "default_popup": "popup/index.html"
+  },
   "background": {
     "scripts": [
       "background.js"
