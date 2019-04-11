@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Hacker News New Comments Highlighter",
+  "name": "HN New Comments Highlighter",
   "version": "0.1",
   "description": "Track and highlight new comments at Hacker News",
   "icons": {
