@@ -1,0 +1,58 @@
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+      font-size: 100%;
+    }
+
+    fieldset {
+      border: none;
+    }
+
+    label {
+      display: inline-block;
+    }
+
+    button {
+      border-radius: 5px;
+      margin-top: 10px;
+      margin-left: 10px;
+      background-color: #ffffaa;
+      border: none;
+      padding: 5px 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+
+    #status {
+      font-size: 80%;
+      margin: -15px 0 0 10px;
+    }
+
+    #status::before{
+      content: "\200B";
+    }
+  </style>
+</head>
+
+<body>
+  <form name="stylingSettings">
+    <fieldset>
+      <legend>Highlighting style:</legend>
+      <input type="radio" name="kind" value="full" id="full"> <label for="full">Full</label><br>
+      <input type="radio" name="kind" value="side" id="side"> <label for="side">Side</label><br>
+    </fieldset>
+    <fieldset>
+      <label>Color: <input id="color" type="color"></label>
+    </fieldset>
+  </form>
+  <div id="status"></div>
+  <button id="save">Save</button>
+
+  <script src="../options.js"></script>
+</body>
+
+</html>

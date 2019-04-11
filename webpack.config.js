@@ -20,7 +20,7 @@ const config = (env, argv) => {
     entry: {
       content: path.join(__dirname, 'src', 'content', 'content.js'),
       background: path.join(__dirname, 'src', 'background', 'background.js'),
-      popup: path.join(__dirname, 'src', 'popup', 'popup.js'),
+      options: path.join(__dirname, 'src', 'pages', 'options', 'options.js'),
     },
     module: {
       rules: [
@@ -64,7 +64,7 @@ const config = (env, argv) => {
         { from: 'img/icon16.png', to: 'img/icon16.png' },
         { from: 'img/icon48.png', to: 'img/icon48.png' },
         { from: 'img/icon128.png', to: 'img/icon128.png' },
-        { from: 'pages/popup/index.html', to: 'popup' },
+        { from: 'pages/options/index.html', to: 'options' },
       ]),
       new MiniCssExtractPlugin({
         filename: 'content.css',
