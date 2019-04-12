@@ -1,16 +1,10 @@
 import chromeStorage from '../../utils/storage';
 
 const loadOptions = () => {
-  chromeStorage.get(
-    {
-      styleSettings: 'full',
-      colorSettings: '#ffffaa',
-    },
-    options => {
-      document.stylingSettings.kind.value = options.styleSettings;
-      document.getElementById('color').value = options.colorSettings;
-    }
-  );
+  chrome.runtime.sendMessage({ action: 'GET_SETTINGS' }, options => {
+    document.stylingSettings.kind.value = options.styleSettings;
+    document.getElementById('color').value = options.colorSettings;
+  });
 };
 
 const saveOptions = () => {

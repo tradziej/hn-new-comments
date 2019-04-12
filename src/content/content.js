@@ -32,6 +32,19 @@ hn.handleKeydown = function(e) {
   page.scroolTo(el);
 };
 
+hn.styleNewComment = function(el, settings) {
+  const { styleSettings, colorSettings } = settings;
+
+  if (styleSettings === 'full') {
+    el.style.background = colorSettings;
+  }
+
+  if (styleSettings === 'side') {
+    el.style.borderLeft = `thick solid ${colorSettings}`;
+    el.style.paddingLeft = '5px';
+  }
+};
+
 hn.highligh = function() {
   if (!page.isActive()) {
     return;
@@ -44,24 +57,26 @@ hn.highligh = function() {
     const comments = page.getComments();
 
     if (oldComments && oldComments.length > 0) {
-      const unread = comments.filter(c => !oldComments.includes(c));
-      hn.unreadComments = unread;
-      unread.forEach(comment => {
-        const el = document.getElementById(comment);
-        el.querySelector('td.default').className += ' hn-new-comment';
+      chrome.runtime.sendMessage({ action: 'GET_SETTINGS' }, settings => {
+        const unread = comments.filter(c => !oldComments.includes(c));
+        if (unread.length > 0) {
+          const { title } = document;
+          hn.unreadComments = unread;
+          unread.forEach(comment => {
+            const el = document.getElementById(comment).querySelector('td.default');
+            hn.styleNewComment(el, settings);
+          });
+          document.title = `(${unread.length}) ${title}`;
+          document.addEventListener('keydown', hn.handleKeydown, false);
+        }
       });
-      if (unread.length > 0) {
-        const { title } = document;
-        document.title = `(${unread.length}) ${title}`;
-        document.addEventListener('keydown', hn.handleKeydown, false);
-      }
+
+      const data = {
+        [itemId]: comments,
+      };
+
+      chrome.runtime.sendMessage({ action: 'SAVE_ITEM', data });
     }
-
-    const data = {
-      [itemId]: comments,
-    };
-
-    chrome.runtime.sendMessage({ action: 'SAVE_ITEM', data });
   });
 };
 
