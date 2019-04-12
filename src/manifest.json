@@ -27,9 +27,6 @@
       "matches": [
         "https://news.ycombinator.com/item?*"
       ],
-      "css": [
-        "content.css"
-      ],
       "js": [
         "content.js"
       ]

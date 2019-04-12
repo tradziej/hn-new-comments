@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = (env, argv) => {
   function resolvePath(toResolve) {
@@ -40,11 +39,6 @@ const config = (env, argv) => {
           use: 'babel-loader',
         },
         {
-          exclude,
-          test: /\.css$/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader'],
-        },
-        {
           test: /\.(png)$/,
           use: ['file-loader'],
         },
@@ -66,9 +60,6 @@ const config = (env, argv) => {
         { from: 'img/icon128.png', to: 'img/icon128.png' },
         { from: 'pages/options/index.html', to: 'options' },
       ]),
-      new MiniCssExtractPlugin({
-        filename: 'content.css',
-      }),
     ],
     devServer: {
       contentBase: buildPath,

@@ -1,4 +1,3 @@
-import style from '../css/main.css';
 import * as page from '../utils/page';
 
 const hn = {};
