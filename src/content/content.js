@@ -56,26 +56,26 @@ hn.highligh = function() {
     const comments = page.getComments();
 
     if (oldComments && oldComments.length > 0) {
-      chrome.runtime.sendMessage({ action: 'GET_SETTINGS' }, settings => {
-        const unread = comments.filter(c => !oldComments.includes(c));
-        if (unread.length > 0) {
-          const { title } = document;
-          hn.unreadComments = unread;
+      const unread = comments.filter(c => !oldComments.includes(c));
+      if (unread.length > 0) {
+        const { title } = document;
+        hn.unreadComments = unread;
+        document.title = `(${unread.length}) ${title}`;
+        chrome.runtime.sendMessage({ action: 'GET_SETTINGS' }, settings => {
           unread.forEach(comment => {
             const el = document.getElementById(comment).querySelector('td.default');
             hn.styleNewComment(el, settings);
           });
-          document.title = `(${unread.length}) ${title}`;
           document.addEventListener('keydown', hn.handleKeydown, false);
-        }
-      });
-
-      const data = {
-        [itemId]: comments,
-      };
-
-      chrome.runtime.sendMessage({ action: 'SAVE_ITEM', data });
+        });
+      }
     }
+
+    const data = {
+      [itemId]: comments,
+    };
+
+    chrome.runtime.sendMessage({ action: 'SAVE_ITEM', data });
   });
 };
 
