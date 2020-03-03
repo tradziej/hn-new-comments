@@ -8,9 +8,15 @@ const defaultSettings = {
 chrome.runtime.onMessage.addListener(({ action, data }, sender, sendResponse) => {
   switch (action) {
     case 'SAVE_ITEM':
-      chromeStorage.set(data, function() {
-        sendResponse(data);
-      });
+      try {
+        chromeStorage.set(data, function() {
+          sendResponse(data);
+        });
+      } catch (error) {
+        if (error === 'QUOTA_BYTES') {
+          chromeStorage.clear();
+        }
+      }
       // it's a asynchronous response
       return true;
     case 'GET_ITEM':
