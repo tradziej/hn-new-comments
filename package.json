@@ -1,6 +1,6 @@
 {
   "name": "hn-new-comments",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Hacker News New Comments Highlighter",
   "scripts": {
     "dev": "webpack --mode development --watch",
